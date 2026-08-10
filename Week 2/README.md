@@ -12,10 +12,11 @@ This experiment formulates Titanic survival prediction as binary classification,
 1. Define the task, features, target, success criterion, and expected naive performance.
 2. Inspect the schema and descriptive statistics.
 3. Check duplicates, missing values, constant columns, mixed types, and impossible values.
-4. Create a reproducible stratified 70/30 train/test split.
-5. Evaluate most-frequent and stratified dummy classifiers.
-6. Compare the baseline with a training-only preprocessing and logistic-regression pipeline.
-7. Interpret the result and decide whether ML is justified.
+4. Fill missing `Cabin` values with the mode and drop the two rows with missing `Embarked`.
+5. Create a reproducible stratified 70/30 train/test split from the cleaned data.
+6. Evaluate most-frequent and stratified dummy classifiers.
+7. Compare the baseline with a logistic-regression pipeline using only complete columns.
+8. Interpret the result and decide whether ML is justified.
 
 ## Run
 
@@ -33,8 +34,9 @@ python -m pip install jupyter pandas matplotlib scikit-learn
 
 ## Recorded results
 
-- The most-frequent baseline achieved **0.616 test accuracy**.
-- The leakage-free logistic-regression pipeline achieved **0.799 test accuracy**, an absolute improvement of **0.183**.
+- The most-frequent baseline achieved **0.618 test accuracy**.
+- The logistic-regression pipeline achieved **0.798 test accuracy**, an absolute improvement of **0.180**.
 - Non-survival is the majority class, making it a meaningful but uninformative baseline.
 - Missing values and high-cardinality text columns are the main data-quality concerns.
+- Missing `Cabin` values are filled with the mode, and the two records missing `Embarked` are removed. The optional logistic comparison uses complete columns and excludes high-cardinality `Cabin`.
 - The improvement over baseline shows that the selected passenger features contain useful predictive signal.

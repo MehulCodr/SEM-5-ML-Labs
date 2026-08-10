@@ -15,6 +15,8 @@ This experiment demonstrates why fitting preprocessing before a train/test split
 
 The corrected workflow splits raw data first and fits preprocessing plus logistic regression inside one `Pipeline` using only training rows.
 
+Numeric features are median-imputed and categorical features are mode-imputed. The notebook displays the learned training-only fill values and asserts that both transformed partitions contain zero missing values.
+
 ## Run
 
 ```powershell
